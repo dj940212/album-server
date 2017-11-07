@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Photovideo from 'models/photovideo'
+import PhotovideoMod from 'models/photovideo'
 
 class Photovideo {
 	construtor() {}
@@ -13,7 +13,7 @@ class Photovideo {
 
 		let photovideo = new Photovideo({
 		    photovideoUrl: photovideoUrl,
-		    thumbnailUrl: thumbnailUrl
+		    thumbnailUrl: thumbnailUrl,
 		    type: type,
 		    text: text
 	    })

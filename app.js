@@ -2,12 +2,12 @@ import Koa from 'koa'
 import cors from 'cors'
 import logger from 'koa-logger'
 import bodyParser from 'koa-bodyparser'
-import Router from './router/routes'
-import config from './config'
+import Router from 'router/routes'
+import config from 'config'
 
 
 const app = new Koa()
-const router = new Router()
+const router = Router()
 
 app.use(cors())
 app.use(logger())

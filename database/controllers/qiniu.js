@@ -17,7 +17,7 @@ class Qiniu {
 
 		const vframeJpgFop = "vframe/jpg/offset/0/rotate/auto|saveas/" + saveJpgEntry;
 		const options = {
-		  scope: bucket + ":" + key
+		  scope: bucket + ":" + key,
 		  //将多个数据处理指令拼接起来
 		  persistentOps: vframeJpgFop,
 		  //数据处理队列名称，必填
@@ -37,3 +37,5 @@ class Qiniu {
 		}
 	}
 }
+
+export default new Qiniu()

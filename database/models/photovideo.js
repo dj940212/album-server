@@ -1,4 +1,4 @@
-const mongoose import 'mongoose'
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
@@ -7,7 +7,7 @@ var PhotovideoSchema = new Schema({
       type:String,
       default: 'photo'
     },
-    photovideoUrl: [String]
+    photovideoUrl: [String],
     thumbnailUrl: String,
     text: String,
     age: String,

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 const Schema = mongoose.Schema
 
-const UserSchame = new Schema({
+const AdminSchema = new Schema({
 	username: String,
 	password: String,
 	token: String,
@@ -19,7 +19,7 @@ const UserSchame = new Schema({
   	}
 })
 
-UserSchema.pre('save', function(next) {
+AdminSchema.pre('save', function(next) {
   	if (this.isNew) {
     	this.meta.createAt = this.meta.updateAt = Date.now()
   	}else {
@@ -29,7 +29,7 @@ UserSchema.pre('save', function(next) {
   	next()
 })
 
-UserSchema.pre('save', function (next) {
+AdminSchema.pre('save', function (next) {
 	let user = this
 
 	if (!user.isModified('password')) return next()
@@ -45,7 +45,7 @@ UserSchema.pre('save', function (next) {
 	})
 })
 
-UserSchema.methods = {
+AdminSchema.methods = {
 	comparePassword: function (_password, password) {
 		return new Promise((resolve, reject) => {
 			bcrypt.compare(_password, password, function (err, isMatch) {

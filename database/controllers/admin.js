@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import AdminMod from 'models/admim'
+import AdminMod from 'models/admin'
 import jwt from 'jsonwebtoken'
 
 class Admin {
