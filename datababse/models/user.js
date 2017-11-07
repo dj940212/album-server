@@ -4,17 +4,8 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const UserSchame = new Schema({
-	role: {
-		type: String,
-		default: 'user'
-	},
 	openid: String,
 	nickname: String,
-  	address: String,
-  	province: String,
-  	country: String,
- 	city: String,
-  	sex: String,
   	yBaby: [
   		type: ObjectId,
   		ref: 'Baby'
@@ -41,7 +32,6 @@ const UserSchame = new Schema({
 	      	dafault: Date.now()
 	    }
   	}
-
 })
 
 UserSchema.pre('save', function(next) {

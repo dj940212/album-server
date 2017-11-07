@@ -6,22 +6,10 @@ const ObjectId = Schema.Types.ObjectId
 const BabySchame = new Schema({
 	name: String,
 	birthday: Date,
-	superAdmin: {
-		type: ObjectId,
-		ref: 'User'
-	},
-	admin: [{
-		type: ObjectId,
-		ref: 'User',
-	}],
-	user: [
-		type: ObjectId,
-		ref: 'User'
-	],
-	photovideo: [
+	photovideo: [{
 		type: ObjectId,
 		ref: 'Photovideo'
-	],
+	}],
   	meta: {
 	    createAt: {
 	      	type: Date,
@@ -45,4 +33,4 @@ BabySchema.pre('save', function(next) {
   	next()
 })
 
-module.exports = mongoose.model('Baby', BabySchema)
+export default mongoose.model('Baby', BabySchema)

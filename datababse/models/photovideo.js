@@ -9,7 +9,8 @@ var PhotovideoSchema = new Schema({
     },
     photovideoUrl: [String]
     thumbnailUrl: String,
-    content: String,
+    text: String,
+    age: String,
     meta: {
         createAt: {
             type: Date,

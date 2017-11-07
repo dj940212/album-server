@@ -11,9 +11,11 @@ require('babel-core/register')({
         [
             'module-alias', [
                 {
-                    src: r('./server'), 'expose': '~',
-                    src: r('./server/database'), 'expose': 'database',
-                    src: r('./server/database/schema'), 'expose': 'schema'
+                    src: r('./'), 'expose': '~',
+                    src: r('./database/models'), 'expose': 'models',
+                    src: r('./database/controllers'), 'expose': 'controllers',
+                    src: r('./router'), 'expose': 'router',
+                    src: r('./config'), 'expose': 'config'
                 }
             ]
         ]
