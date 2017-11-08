@@ -14,7 +14,8 @@ require('babel-core/register')({
                 {src: r('./database/models'), 'expose': 'models'},
                 {src: r('./database/controllers'), 'expose': 'controllers'},
                 {src: r('./router'), 'expose': 'router'},
-                {src: r('./config'), 'expose': 'config'}
+                {src: r('./config'), 'expose': 'config'},
+                {src: r('./middlewares'), 'expose': 'middlewares'}
             ]
         ]
     ]

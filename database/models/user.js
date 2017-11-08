@@ -3,25 +3,31 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-const UserSchame = new Schema({
+const UserSchema = new Schema({
 	openid: String,
-	nickname: String,
-  	yBaby: [
+    avatarUrl: String, 
+    city: String, 
+    country: String, 
+    gender: String,
+    language: String, 
+    nickName: String,
+    province: String,
+  	yBaby: [{
   		type: ObjectId,
   		ref: 'Baby'
-  	],
-  	aBaby: [
+  	}],
+  	aBaby: [{
   		type: ObjectId,
   		ref: 'Baby'
-  	],
-  	oBaby: [
+  	}],
+  	oBaby: [{
   		type: ObjectId,
   		ref: 'Baby'
-  	],
-  	relatives: [
+  	}],
+  	relatives: [{
   		type: ObjectId,
   		ref: 'User'
-  	],
+  	}],
   	meta: {
 	    createAt: {
 	      	type: Date,
@@ -44,4 +50,4 @@ UserSchema.pre('save', function(next) {
   	next()
 })
 
-module.exports = mongoose.model('User', UserSchema)
+export default mongoose.model('User', UserSchema)

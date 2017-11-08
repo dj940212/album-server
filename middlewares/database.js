@@ -1,9 +1,11 @@
 import mongoose from 'mongoose'
 import config from 'config'
+import Admin from 'models/admin'
 
 export default () => {
+    mongoose.Promise = global.Promise
 	mongoose.set('debug', true)
-	mongoose.connect(config.db)
+	mongoose.connect(config.db, { useMongoClient: true })
 	mongoose.connection.on('disconnected', () => {
 		mongoose.connect(config.db)
 	})
@@ -13,13 +15,10 @@ export default () => {
     mongoose.connection.on('open', async ()=> {
         console.log('Connected to MongoDB Success')
 
-        let admin = await User.findOne({
-        	username: config.admin.username, 
-        	password: config.admin.password
-        })
+        let admin = await Admin.findOne({username:config.admin.username})
 
         if (!admin) {
-            await new User(config.admin).save()
+            await new Admin(config.admin).save()
             console.log("写入管理员数据")
         }
     })

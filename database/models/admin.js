@@ -1,12 +1,14 @@
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+
+const SALT_WORK_FACTOR = 10
 
 const Schema = mongoose.Schema
 
 const AdminSchema = new Schema({
 	username: String,
 	password: String,
-	token: String,
   	meta: {
 	    createAt: {
 	      	type: Date,

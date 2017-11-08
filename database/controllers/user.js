@@ -1,38 +1,60 @@
 import axios from 'axios'
+import UserMod from 'models/user'
+import config from 'config'
 
 class User{
 	construtor() {}
 
 	async login(ctx) {
 		// 注册
-		const {jscode, nickname} = ctx.request.body
+		const {js_code, avatarUrl, city, country, gender, language, nickName, province } = ctx.request.body
 		
-		const res = await axios.get('https://api.weixin.qq.com/sns/jscode2session',{
+		console.log(ctx.request.body,config.wxapp)
+		const res = await axios.get(config.wxapp.openidUrl,{
 			params: {
-				appid: 'wx0cabd8483ff83d59',
-			    secret: '67095a452704f90ce9d890c269ebac72',
-			    js_code: jscode,
-			    grant_type: "authorization_code"
+				appid: config.wxapp.appid,
+			    secret: config.wxapp.secret,
+			    js_code: js_code,
+			    grant_type: config.wxapp.grant_type
 			}
 		})
-
+		
+		console.log(res.data)
+		if (!res.data.openid) {
+			ctx.body = {
+				success: false,
+				message: "获取openid失败"
+			}
+			return
+		}
 		const openid = res.data.openid
-		let user = await User.findOne({openid: openid})
+		let user = await UserMod.findOne({openid: openid})
 
 		if (user){
-			return console.log("用户已存在")
+			ctx.body = {
+				success: true,
+				message: '用户已存在',
+				openid: openid
+			}
+			return
 		} 
 
-		console.log("创建新用户")
-		user = new User({
-			openid: openid,
-	        nickName: nickName,
+		user = new UserMod({
+			openid,
+			avatarUrl, 
+			city, 
+			country, 
+			gender,
+			language, 
+			nickName,
+			province
 		})
 
 		user = await user.save()
 		
 		ctx.body = {
 			success: true,
+			message: '创建新用户',
 			openid: openid
 		}
 	}
