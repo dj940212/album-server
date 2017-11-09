@@ -12,14 +12,10 @@ const UserSchema = new Schema({
     language: String, 
     nickName: String,
     province: String,
-  	yBaby: [{
+  	baby: {
   		type: ObjectId,
   		ref: 'Baby'
-  	}],
-  	aBaby: [{
-  		type: ObjectId,
-  		ref: 'Baby'
-  	}],
+  	},
   	oBaby: [{
   		type: ObjectId,
   		ref: 'Baby'

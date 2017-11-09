@@ -9,7 +9,6 @@ class User{
 		// 注册
 		const {js_code, avatarUrl, city, country, gender, language, nickName, province } = ctx.request.body
 		
-		console.log(ctx.request.body,config.wxapp)
 		const res = await axios.get(config.wxapp.openidUrl,{
 			params: {
 				appid: config.wxapp.appid,
@@ -19,7 +18,6 @@ class User{
 			}
 		})
 		
-		console.log(res.data)
 		if (!res.data.openid) {
 			ctx.body = {
 				success: false,
